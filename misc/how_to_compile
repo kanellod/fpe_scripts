@@ -1,0 +1,1 @@
+g++ epideiksh.cpp  -lgmp -lmpfr -o fot2

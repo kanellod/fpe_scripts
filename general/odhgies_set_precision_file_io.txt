@@ -1,0 +1,39 @@
+Για να σετάρουμε precision κάνουμε τα εξής:
+	1. κάνουμε include τις #include <gmpxx.h> #include <mpfr.h> #include <mpreal.h>
+	2. θέτουμε τις double μεταβλητές μας σαν mpreal (π.χ. mpreal a;)
+	3. Όταν θέλουμε να σετάρουμε το precision τους το κάνουμε ως εξής: a.setPrecision(<precision goes here>,MPFR_RNDN);
+	4. Κάνουμε compile βάζοντας μέσα τις βιβλιοθήκες (g++ -o <exe_name_goes_here> <full_file_name> -lgmp -lmpfr).
+
+
+Για ασφαλές print:
+mpfr_printf("%.*Re",6,nums_read[deiktis_read].mpfr_ptr());
+
+
+Για ασφαλή ανάγνωση αρχείου:
+
+	1. Κάνω include τις <fstream> και <sstream>
+	2. Δηλώνω ότι ανοίγω το αρχείο μου για διάβασμα με την εντολή ifstream <όνομα_αρχείου>;
+	3. Ορίζω ένα string στο οποίο θα αποθηκεύεται προσωρινά το input από το αρχείο
+	4. Διαβάζω κάθε γραμμή με τον ακόλουθο κώδικα:
+		
+
+		myfile.open ("santana_smooth_kin1.txt");			//Άνοιγμα αρχείου
+		if(myfile.is_open()) 								//Έλεγχος για το αν άνοιξε το αρχείο
+		{
+			deiktis_read=0;
+			while(getline(myfile,string1))					//Διάβασμα μίας-μίας των γραμμών του αρχείου
+			{
+				istringstream costas_read(string1);			//Ορισμός ενός stream για αποθήκευση των strings που διαβάζονται			
+				costas_read >>	nums_read[deiktis_read];	//Απόδοση του stream στον πίνακα/μεταβλητή στον/στην οποία 
+				deiktis_read++;								//θέλουμε να κρατήσουμε τις τιμές του αρχείου
+			} 
+			myfile.close();									//Κλείσιμο αρχείου
+    	}
+		else
+			cout << "Unable to open file, sorry...\n";	
+
+
+	
+	
+
+			
